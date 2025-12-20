@@ -1,5 +1,3 @@
-WHAT: 创建shnote公式
-WHY:  为homebrew提供mac二进制安装
 class Shnote < Formula
   desc "Shell command wrapper with WHAT/WHY"
   homepage "https://github.com/Wangnov/shnote"
