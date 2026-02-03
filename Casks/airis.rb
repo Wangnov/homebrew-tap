@@ -1,6 +1,6 @@
 cask "airis" do
-  version "1.0.0"
-  sha256 "4d5da5b1d3521c75c30b75206beddbdccb54c43e909faf91f939f0c70d832cb0"
+  version "1.0.1"
+  sha256 "ac95e042aeef9d5e4e191304e9395b5561baf58ee6c9c55fcbf960784ae99656"
 
   url "https://github.com/Wangnov/Airis/releases/download/v#{version}/Airis-#{version}.zip"
   name "Airis"
