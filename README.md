@@ -5,7 +5,7 @@ This is the official Homebrew Cask repository for [Airis](https://github.com/Wan
 ## Installation
 
 ```bash
-brew tap wangnov/airis
+brew tap wangnov/tap
 brew install --cask airis
 ```
 
