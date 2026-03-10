@@ -1,25 +1,25 @@
 class Shnote < Formula
   desc "A lightweight command wrapper that enforces WHAT/WHY documentation"
   homepage "https://github.com/wangnov/shnote"
-  version "0.3.0"
+  version "0.3.2"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/wangnov/shnote/releases/download/v0.3.0/shnote-aarch64-apple-darwin.tar.xz"
-      sha256 "5d78781ecb1ed5ad99ac3e32cefbc776b363615402f71ba4e7c6ba20b3d9e28e"
+      url "https://github.com/wangnov/shnote/releases/download/v0.3.2/shnote-aarch64-apple-darwin.tar.xz"
+      sha256 "2f1e65281d631379398df457923a25df2e2df447a753231f249e126a5ed3f576"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/wangnov/shnote/releases/download/v0.3.0/shnote-x86_64-apple-darwin.tar.xz"
-      sha256 "83dd0b2686c14ae04f385cc63f1ce10c4d279ac3aa0eda2c3ec417011726e99b"
+      url "https://github.com/wangnov/shnote/releases/download/v0.3.2/shnote-x86_64-apple-darwin.tar.xz"
+      sha256 "a9497040bd0213a033fd980c1169158e491f8aaa211372abc00cdafed83311dd"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/wangnov/shnote/releases/download/v0.3.0/shnote-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "3660bd2ae0c15dc937bbcd525e83c04eeac1dc885938a648e2cbe5c6756a7027"
+      url "https://github.com/wangnov/shnote/releases/download/v0.3.2/shnote-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "2bc0bddac392aa16e95cac1b038444993dac8f8f49bf4389790786916476197b"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/wangnov/shnote/releases/download/v0.3.0/shnote-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "c0e515e57ee4e340ac7a181d71f20366d8867769e3ade7b7c4697bf93c962341"
+      url "https://github.com/wangnov/shnote/releases/download/v0.3.2/shnote-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "c2b94327c98b05aa79910bcc6822bbd2e2862acb53c23dd882cc250a4d8b8ead"
     end
   end
   license "MIT"
