@@ -5,21 +5,21 @@
 class GetFeishuDocs < Formula
   desc "CLI for exporting Feishu documents into stable local deliverables."
   homepage "https://github.com/Wangnov/get-feishu-docs"
-  version "0.2.0"
+  version "0.3.0"
   license "MIT"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/wangnov/get-feishu-docs/releases/download/v0.2.0/get-feishu-docs_0.2.0_darwin_amd64.tar.gz"
-      sha256 "3967fc82c3c58ad99d7e6b6b7409657741a2c6d485f3b7d96f8848a7a7a3912e"
+      url "https://github.com/wangnov/get-feishu-docs/releases/download/v0.3.0/get-feishu-docs_0.3.0_darwin_amd64.tar.gz"
+      sha256 "b8c39c56c175142a87c5130c3cf101a3348d801ecd4942691719cd26bd4b291b"
 
       define_method(:install) do
         bin.install "get-feishu-docs"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/wangnov/get-feishu-docs/releases/download/v0.2.0/get-feishu-docs_0.2.0_darwin_arm64.tar.gz"
-      sha256 "ae08acd73374414d0e6e22fad477d19e4a4d8e83aff50f1813c53b823d5056b1"
+      url "https://github.com/wangnov/get-feishu-docs/releases/download/v0.3.0/get-feishu-docs_0.3.0_darwin_arm64.tar.gz"
+      sha256 "754631f82932d8fd8e49d6ac98282aee559ff7d75fafa111d1764a8402044f1a"
 
       define_method(:install) do
         bin.install "get-feishu-docs"
@@ -29,15 +29,15 @@ class GetFeishuDocs < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/wangnov/get-feishu-docs/releases/download/v0.2.0/get-feishu-docs_0.2.0_linux_amd64.tar.gz"
-      sha256 "ada8b51756510e518ef94b1d4607c3e2edea09385d96d802ffe36b4af22debbf"
+      url "https://github.com/wangnov/get-feishu-docs/releases/download/v0.3.0/get-feishu-docs_0.3.0_linux_amd64.tar.gz"
+      sha256 "c48831a93d5a57218fd810474164f72d7b58e6371e5be9d2932b4511cf3afa82"
       define_method(:install) do
         bin.install "get-feishu-docs"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/wangnov/get-feishu-docs/releases/download/v0.2.0/get-feishu-docs_0.2.0_linux_arm64.tar.gz"
-      sha256 "44a3004bd1e98fa800b9f889a9009fda8f85e2f218de5a328a104b2282f2839f"
+      url "https://github.com/wangnov/get-feishu-docs/releases/download/v0.3.0/get-feishu-docs_0.3.0_linux_arm64.tar.gz"
+      sha256 "2368c22e4a02796eed9bfc8c0e4696477056ff0afccbc9ef448cdd5fd01c0948"
       define_method(:install) do
         bin.install "get-feishu-docs"
       end
