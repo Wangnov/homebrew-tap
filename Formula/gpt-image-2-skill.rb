@@ -1,38 +1,36 @@
 class GptImage2Skill < Formula
   desc "Agent-first GPT Image 2 CLI and installable skill runtime."
   homepage "https://github.com/Wangnov/gpt-image-2-skill"
-  version "0.2.4"
+  version "0.2.5"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.2.4/gpt-image-2-skill-aarch64-apple-darwin.tar.xz"
-      sha256 "9bff894891e581ccb7b19b017d5a118a8a5012298b650887ce3861d04bfded2b"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.2.5/gpt-image-2-skill-aarch64-apple-darwin.tar.xz"
+      sha256 "f9738bdd9aa83652f5602158dda7a7e7f554a074c718ccf8a614bad876e9367a"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.2.4/gpt-image-2-skill-x86_64-apple-darwin.tar.xz"
-      sha256 "9a61a9a27f551d5c04c398b8bb1256240d6105b5eb29bbab9beba5bf3e999f0d"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.2.5/gpt-image-2-skill-x86_64-apple-darwin.tar.xz"
+      sha256 "9e6b630cddaa45cd31bd74bbf71168f2f864ca1afb0671ec92a84aa179e139ef"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.2.4/gpt-image-2-skill-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "81f556026912d446f0f58145ae1d0ca9e4ffb81f51bc7d486d9831d9fa889e61"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.2.5/gpt-image-2-skill-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "89a655b99e372c5cd3c8eaed40b54e76403a6f65983bd6eff1dc16ca6e087d01"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.2.4/gpt-image-2-skill-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "9ac1d3ba70d6032a2e4e07331254799abe1551ef77b67821609310496398cb15"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.2.5/gpt-image-2-skill-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "a37c099940f49e7bb6bd2f036e1e899e1669000da2901763e8a6aff467b8e1b1"
     end
   end
   license "MIT"
 
   BINARY_ALIASES = {
-    "aarch64-apple-darwin":              {},
-    "aarch64-pc-windows-gnu":            {},
-    "aarch64-unknown-linux-gnu":         {},
-    "x86_64-apple-darwin":               {},
-    "x86_64-pc-windows-gnu":             {},
-    "x86_64-unknown-linux-gnu":          {},
-    "x86_64-unknown-linux-musl-dynamic": {},
-    "x86_64-unknown-linux-musl-static":  {},
+    "aarch64-apple-darwin":      {},
+    "aarch64-pc-windows-gnu":    {},
+    "aarch64-unknown-linux-gnu": {},
+    "x86_64-apple-darwin":       {},
+    "x86_64-pc-windows-gnu":     {},
+    "x86_64-unknown-linux-gnu":  {},
   }.freeze
 
   def target_triple
