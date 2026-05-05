@@ -3,22 +3,22 @@ class CodexAsr < Formula
   homepage "https://github.com/Wangnov/codex-asr"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/codex-asr/releases/download/v0.1.1/codex-asr-aarch64-apple-darwin.tar.xz"
-      sha256 "4358b987d75995e0187312bf37c46bfad179b658fc42b540c48d317805b1f0ff"
+      url "https://github.com/Wangnov/codex-asr/releases/download/v0.1.2/codex-asr-aarch64-apple-darwin.tar.xz"
+      sha256 "22e7b6243ded5d6394d72a2b397422cfefb874430b5933462df6c765782adf03"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/codex-asr/releases/download/v0.1.1/codex-asr-x86_64-apple-darwin.tar.xz"
-      sha256 "1a1d501001846caf6d9ef701a926ffd4ca93c79a8b045407afa85eeae4b1ce1b"
+      url "https://github.com/Wangnov/codex-asr/releases/download/v0.1.2/codex-asr-x86_64-apple-darwin.tar.xz"
+      sha256 "6acb2171e8ad373eb73d649c10b2401ed6f8c1b4191d3d9cfcc0f3dad962e05e"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/codex-asr/releases/download/v0.1.1/codex-asr-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "68b5bcb4b25f9ff76c0de4d96eca963918fe8a6b4cdab0442571f271bc9f6017"
+      url "https://github.com/Wangnov/codex-asr/releases/download/v0.1.2/codex-asr-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "58eb101d29454924b4e395a49d7d040bd95b9ae2d37ea8a75d8890aea1d70b13"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/codex-asr/releases/download/v0.1.1/codex-asr-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "e8b7be7883107cefa9633609a5200706c7a91dc4e788b6ac6633cf3063724fb5"
+      url "https://github.com/Wangnov/codex-asr/releases/download/v0.1.2/codex-asr-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "16a27b87d45f91caaf9f0803cc4674a05f1f2bb5251b129426e7e502eba24f33"
     end
   end
   license "MIT"
