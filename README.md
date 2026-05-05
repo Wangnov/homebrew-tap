@@ -1,11 +1,27 @@
-# Homebrew Tap for Airis
+# Wangnov Homebrew Tap
 
-This is the official Homebrew Cask repository for [Airis](https://github.com/Wangnov/Airis) - an AI-powered image processing CLI tool.
+Homebrew formulas and casks for Wangnov projects.
 
 ## Installation
 
 ```bash
 brew tap wangnov/tap
+```
+
+### codex-asr
+
+Unofficial Codex Desktop ASR CLI and local Whisper-compatible REST shim.
+
+```bash
+brew install codex-asr
+codex-asr --help
+```
+
+### Airis
+
+AI-powered image processing CLI tool.
+
+```bash
 brew install --cask airis
 ```
 
