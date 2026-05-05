@@ -1,7 +1,6 @@
 class CodexAsr < Formula
   desc "Unofficial Codex Desktop ASR CLI and local Whisper-compatible REST shim"
   homepage "https://github.com/Wangnov/codex-asr"
-  version "0.1.1"
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/Wangnov/codex-asr/releases/download/v0.1.1/codex-asr-aarch64-apple-darwin.tar.xz"
@@ -61,6 +60,6 @@ class CodexAsr < Formula
   end
 
   test do
-    system "#{bin}/codex-asr", "--version"
+    system bin/"codex-asr", "--version"
   end
 end
