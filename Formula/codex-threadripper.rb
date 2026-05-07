@@ -1,25 +1,25 @@
 class CodexThreadripper < Formula
   desc "Human-first CLI that keeps Codex thread history aligned to one provider bucket."
   homepage "https://github.com/Wangnov/codex-threadripper"
-  version "0.1.8"
+  version "0.2.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.1.8/codex-threadripper-aarch64-apple-darwin.tar.xz"
-      sha256 "41c28c41c3b9d9c5d8a4e67d105b0e63403d18fbbf5b3f845d52d5b071aff7e5"
+      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.2.0/codex-threadripper-aarch64-apple-darwin.tar.xz"
+      sha256 "5b857eb66f7db79021877771a6cd5d377566aa3a7f5f3a75ac07bf2ab92ab33e"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.1.8/codex-threadripper-x86_64-apple-darwin.tar.xz"
-      sha256 "9b41949c3b93ccaa20ea59d63f06479e83d5ddbe46c40390a1c074af9703e432"
+      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.2.0/codex-threadripper-x86_64-apple-darwin.tar.xz"
+      sha256 "04025f8df96a7436a7fd54492991c3c102e68896e0305229efb715cc7c0595ae"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.1.8/codex-threadripper-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "35d6edf715c46523b7550c1f3e5b225d33b448819ef000beb293fd38469e68d9"
+      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.2.0/codex-threadripper-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "627ec0d2e4b150abd82a21287adf62e2b753532d5a956584465c4af931ed934c"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.1.8/codex-threadripper-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "413293570350de053e80d1524d143b01eff3b9cc6c183518d71ce860a3a9b03f"
+      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.2.0/codex-threadripper-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "09924aa7610030f4658292594720061ac2083f71d36db62f95c542ee18b4b796"
     end
   end
   license "MIT"
