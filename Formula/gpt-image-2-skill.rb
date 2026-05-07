@@ -1,25 +1,25 @@
 class GptImage2Skill < Formula
   desc "Agent-first GPT Image 2 CLI and installable skill runtime."
   homepage "https://github.com/Wangnov/gpt-image-2-skill"
-  version "0.3.8"
+  version "0.4.0"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.3.8/gpt-image-2-skill-aarch64-apple-darwin.tar.xz"
-      sha256 "f32a4390556b69eddb71a8ef27406f0038ed2ac44dfda597214d1ac9ffcf6860"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.4.0/gpt-image-2-skill-aarch64-apple-darwin.tar.xz"
+      sha256 "b0cac31aa5ecad59814713bbdbe0b22c2a6467bed7b78477987951fdbb3ee7dd"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.3.8/gpt-image-2-skill-x86_64-apple-darwin.tar.xz"
-      sha256 "41d0ec625ee1fa33989a980ed54699e9b0bc470927ccb2cbafeb67b234bcc95a"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.4.0/gpt-image-2-skill-x86_64-apple-darwin.tar.xz"
+      sha256 "7fe8c83c6a985aa79d560d0f84de788a73776e58a6a4a42a23a6db5dbc6e5d6a"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.3.8/gpt-image-2-skill-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "775f7b66d7d95dcb56a72eb4008ec2e226d0651d1df45a8bfff85d565930439a"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.4.0/gpt-image-2-skill-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "c688bcbbe999861dbc0a0dff9cf4db88bf963e1d774218147e14471014c601bc"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.3.8/gpt-image-2-skill-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "ab4c6897abb6a15519f595f100e78e04e6c5388be8c7bfcb5ce0435a1f51f6ab"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.4.0/gpt-image-2-skill-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "995f6e073424b88d6ce8ff789841f98a04ba7e28cba28082e40532c0391114e6"
     end
   end
   license "MIT"
