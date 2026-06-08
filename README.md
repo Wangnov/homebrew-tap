@@ -25,6 +25,14 @@ AI-powered image processing CLI tool.
 brew install --cask airis
 ```
 
+### Codex App Manager
+
+Install, update, and uninstall the official Codex desktop app — with built-in, China-reachable self-update.
+
+```bash
+brew install --cask codex-app-manager
+```
+
 ## Usage
 
 After installation, the `airis` command will be available in your terminal:

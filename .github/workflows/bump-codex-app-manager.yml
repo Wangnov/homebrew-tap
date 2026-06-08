@@ -1,0 +1,64 @@
+name: Bump codex-app-manager cask
+
+# Keeps Casks/codex-app-manager.rb in sync with the latest stable release of
+# Wangnov/Codex-App-Manager. Reads the public release + assets with the default
+# GITHUB_TOKEN (no extra secret needed) and commits the new version + sha256s
+# straight to main. Runs on a schedule and on demand.
+
+on:
+  schedule:
+    - cron: "30 */6 * * *"   # every 6 hours
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: bump-codex-app-manager
+  cancel-in-progress: false
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Bump cask if a newer release exists
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPSTREAM: Wangnov/Codex-App-Manager
+        run: |
+          set -euo pipefail
+          cask="Casks/codex-app-manager.rb"
+
+          latest="$(gh release view --repo "$UPSTREAM" --json tagName --jq .tagName)"
+          ver="${latest#v}"
+          cur="$(sed -nE 's/^ *version "([^"]+)".*/\1/p' "$cask" | head -1)"
+          echo "current=$cur latest=$ver"
+          if [ "$ver" = "$cur" ]; then
+            echo "cask already at $ver — nothing to do"
+            exit 0
+          fi
+
+          tmp="$(mktemp -d)"
+          gh release download "$latest" --repo "$UPSTREAM" \
+            -p CodexAppManager_aarch64.dmg -p CodexAppManager_x86_64.dmg -D "$tmp"
+          arm="$(sha256sum "$tmp/CodexAppManager_aarch64.dmg" | awk '{print $1}')"
+          intel="$(sha256sum "$tmp/CodexAppManager_x86_64.dmg" | awk '{print $1}')"
+
+          sed -i -E "s/^( *version )\"[^\"]+\"/\1\"$ver\"/" "$cask"
+          sed -i -E "s/^( *sha256 arm: +)\"[0-9a-f]{64}\"/\1\"$arm\"/" "$cask"
+          sed -i -E "s/^( *intel: +)\"[0-9a-f]{64}\"/\1\"$intel\"/" "$cask"
+
+          # Fail loudly if the file format drifted and the rewrite missed.
+          grep -q "version \"$ver\"" "$cask" || { echo "::error::version not updated"; exit 1; }
+          grep -q "\"$arm\"" "$cask"          || { echo "::error::arm sha256 not updated"; exit 1; }
+          grep -q "\"$intel\"" "$cask"        || { echo "::error::intel sha256 not updated"; exit 1; }
+          ruby -c "$cask"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add "$cask"
+          git commit -m "codex-app-manager: ${cur} -> ${ver}"
+          git push
+          echo "✓ bumped codex-app-manager ${cur} -> ${ver}"
