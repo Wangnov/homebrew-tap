@@ -1,25 +1,25 @@
 class ClaudeCodeStatuslinePro < Formula
   desc "Enhanced statusline for Claude Code with 10x performance"
   homepage "https://github.com/Wangnov/claude-code-statusline-pro"
-  version "4.1.0"
+  version "4.1.1"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/claude-code-statusline-pro/releases/download/v4.1.0/claude-code-statusline-pro-aarch64-apple-darwin.tar.xz"
-      sha256 "172901f8df3b8f014f996e2bdb2a5e26bb62c161d3a9951a0995df621796b3a5"
+      url "https://github.com/Wangnov/claude-code-statusline-pro/releases/download/v4.1.1/claude-code-statusline-pro-aarch64-apple-darwin.tar.xz"
+      sha256 "a6ca6ce80bb84bed727275682ce981f00767f3a57c9ac2b78fec1ccac359d60e"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/claude-code-statusline-pro/releases/download/v4.1.0/claude-code-statusline-pro-x86_64-apple-darwin.tar.xz"
-      sha256 "6239c8b4d3f4fc5710476030312fc00a946a3fd28d8612dc139461036b355295"
+      url "https://github.com/Wangnov/claude-code-statusline-pro/releases/download/v4.1.1/claude-code-statusline-pro-x86_64-apple-darwin.tar.xz"
+      sha256 "256418f236b8672a882ef8860721539bb6883c3f83793354367c364a6a1bb821"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/claude-code-statusline-pro/releases/download/v4.1.0/claude-code-statusline-pro-aarch64-unknown-linux-musl.tar.xz"
-      sha256 "e9b9c708d7432cb760fdac41cd832c4c6cf878830d29a8e21c88c8276f1ce786"
+      url "https://github.com/Wangnov/claude-code-statusline-pro/releases/download/v4.1.1/claude-code-statusline-pro-aarch64-unknown-linux-musl.tar.xz"
+      sha256 "33f1279d8d7076b84aaff51a5dbe97ffa79b88a6478ca6cc8caa08041fae282d"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/claude-code-statusline-pro/releases/download/v4.1.0/claude-code-statusline-pro-x86_64-unknown-linux-musl.tar.xz"
-      sha256 "fe392ad5e1c029d63f9b431fbdc3e94bcd6dbbc8304d763deb7177f0d8086380"
+      url "https://github.com/Wangnov/claude-code-statusline-pro/releases/download/v4.1.1/claude-code-statusline-pro-x86_64-unknown-linux-musl.tar.xz"
+      sha256 "380d60464dbd7c1056cf4b77a5b2704bb240aa525bb1a768166816f6c4f1db79"
     end
   end
   license "MIT"
