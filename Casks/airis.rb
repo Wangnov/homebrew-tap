@@ -7,7 +7,7 @@ cask "airis" do
   desc "AI-powered image processing CLI tool"
   homepage "https://github.com/Wangnov/Airis"
 
-  depends_on macos: ">= :sonoma"
+  depends_on macos: :sonoma
 
   app "Airis-Dist.app", target: "Airis.app"
   binary "#{appdir}/Airis.app/Contents/MacOS/Airis", target: "airis"
