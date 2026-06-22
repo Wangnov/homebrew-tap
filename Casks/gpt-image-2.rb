@@ -1,9 +1,9 @@
 cask "gpt-image-2" do
   arch arm: "aarch64", intel: "x64"
 
-  version "0.7.0"
-  sha256 arm:   "d26845bf7a1096755bf54336c5ad909c67e440f3898f1a19e99e7bf770bb2901",
-         intel: "1b4ddb9256592e18230f77fdeaeba525e3c07178e0c5a3517b07876c7fe8afc3"
+  version "0.7.1"
+  sha256 arm:   "ca16d5773554120faf55af3d118277d5a3596be69e84178e9b1f64a76bbd2104",
+         intel: "f4e9e3914da906f46abc207c15b76324135f6b9efb408818857474252c453133"
 
   url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v#{version}/GPT.Image.2_#{version}_#{arch}.dmg"
   name "GPT Image 2"
