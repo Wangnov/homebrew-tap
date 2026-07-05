@@ -1,25 +1,25 @@
 class CodexThreadripper < Formula
   desc "Human-first CLI that keeps Codex thread history aligned to one provider bucket."
   homepage "https://github.com/Wangnov/codex-threadripper"
-  version "0.3.4"
+  version "0.3.5"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.3.4/codex-threadripper-aarch64-apple-darwin.tar.xz"
-      sha256 "ef7e241defeba49392e0832e636d63a236fe1d161f09da07ed638c4173a8fe8b"
+      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.3.5/codex-threadripper-aarch64-apple-darwin.tar.xz"
+      sha256 "4577341f3238951cd6ca2d417c8edcc8d70ea182c2d383d0d92d659ac6908774"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.3.4/codex-threadripper-x86_64-apple-darwin.tar.xz"
-      sha256 "5c3726560f145793d40692a1ff62bfa6d85f3f60a3f80162802ae799d51afa57"
+      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.3.5/codex-threadripper-x86_64-apple-darwin.tar.xz"
+      sha256 "64372f490f73c411d0580fe0bb1b417ca49fbf542d6e741d7b7f9f60564e38bc"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.3.4/codex-threadripper-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "a84a4cef2b381920a9893b3927d753d35c5fe0f2fe08f414865108d5095edf6e"
+      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.3.5/codex-threadripper-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "7c1a2a8474a2e59a3945b455ad66ee8a6805972efd10701d010d74c1375216dc"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.3.4/codex-threadripper-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "6f1c8ac64a256216067915386b6243ed691b2e79836403a969e3b2469c67250b"
+      url "https://github.com/Wangnov/codex-threadripper/releases/download/v0.3.5/codex-threadripper-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "aa7f479181320fccbf1427d957d6e99ba1d86fd1d10fd0aa1e79a4513bee1076"
     end
   end
   license "MIT"
@@ -27,9 +27,13 @@ class CodexThreadripper < Formula
   BINARY_ALIASES = {
     "aarch64-apple-darwin": {},
     "aarch64-unknown-linux-gnu": {},
+    "aarch64-unknown-linux-musl-dynamic": {},
+    "aarch64-unknown-linux-musl-static": {},
     "x86_64-apple-darwin": {},
     "x86_64-pc-windows-gnu": {},
-    "x86_64-unknown-linux-gnu": {}
+    "x86_64-unknown-linux-gnu": {},
+    "x86_64-unknown-linux-musl-dynamic": {},
+    "x86_64-unknown-linux-musl-static": {}
   }
 
   def target_triple
