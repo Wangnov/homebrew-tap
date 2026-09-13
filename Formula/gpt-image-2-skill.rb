@@ -1,25 +1,25 @@
 class GptImage2Skill < Formula
   desc "Agent-first GPT Image 2 CLI and installable skill runtime."
   homepage "https://github.com/Wangnov/gpt-image-2-skill"
-  version "0.7.3"
+  version "0.7.4"
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.7.3/gpt-image-2-skill-aarch64-apple-darwin.tar.xz"
-      sha256 "9a05bb738f756961dd2c4122b00a4345cdc8416b8e91d852d20c30bf1a54a79e"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.7.4/gpt-image-2-skill-aarch64-apple-darwin.tar.xz"
+      sha256 "330a7104e0d1cd855413232511831378f14460b66cf33e3a9a9711f60674b5f3"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.7.3/gpt-image-2-skill-x86_64-apple-darwin.tar.xz"
-      sha256 "20a7d34606b8029234e7dc8a0e787a0090a5e8a29d4cd65fee37e6fb1c0dcba8"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.7.4/gpt-image-2-skill-x86_64-apple-darwin.tar.xz"
+      sha256 "8f69c3951dd8ef3a8bda70c011095404969d6025ed424e42c9fe5bfea09a3887"
     end
   end
   if OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.7.3/gpt-image-2-skill-aarch64-unknown-linux-gnu.tar.xz"
-      sha256 "4bb137e26323b3b589007a3d980f8f5e260fa589ecdc7246f08f491341cfb920"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.7.4/gpt-image-2-skill-aarch64-unknown-linux-gnu.tar.xz"
+      sha256 "1fb2292db4241861147a06d32c44e5a5ee78b74e6e80a06a0f69758712438f03"
     end
     if Hardware::CPU.intel?
-      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.7.3/gpt-image-2-skill-x86_64-unknown-linux-gnu.tar.xz"
-      sha256 "32e65eade4f6a93b3bb7c08908e615667d062f207404bf823b3dfa99caf8860c"
+      url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v0.7.4/gpt-image-2-skill-x86_64-unknown-linux-gnu.tar.xz"
+      sha256 "200109f77c0e245bf46e9177d0ca0a7d07c61f948f59837751136ddf0988b850"
     end
   end
   license "MIT"
@@ -53,10 +53,18 @@ class GptImage2Skill < Formula
   end
 
   def install
-    bin.install "gpt-image-2-skill" if OS.mac? && Hardware::CPU.arm?
-    bin.install "gpt-image-2-skill" if OS.mac? && Hardware::CPU.intel?
-    bin.install "gpt-image-2-skill" if OS.linux? && Hardware::CPU.arm?
-    bin.install "gpt-image-2-skill" if OS.linux? && Hardware::CPU.intel?
+    if OS.mac? && Hardware::CPU.arm?
+      bin.install "gpt-image-2-skill"
+    end
+    if OS.mac? && Hardware::CPU.intel?
+      bin.install "gpt-image-2-skill"
+    end
+    if OS.linux? && Hardware::CPU.arm?
+      bin.install "gpt-image-2-skill"
+    end
+    if OS.linux? && Hardware::CPU.intel?
+      bin.install "gpt-image-2-skill"
+    end
 
     install_binary_aliases!
 
