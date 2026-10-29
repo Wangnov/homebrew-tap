@@ -1,9 +1,9 @@
 cask "codex-app-manager" do
   arch arm: "aarch64", intel: "x86_64"
 
-  version "0.5.16"
-  sha256 arm:   "96ddd4ed424b174cb0060d92aff28cd80cd7633d5619890372d1d27a55e6be40",
-         intel: "2bc77abae2e6e8502552c1c73a6beee9ed4b7be202e008ed9b3542fe1327dee0"
+  version "0.5.17"
+  sha256 arm:   "cd5b50498c2b76589e250be834a16ded50b67455e8ecf12e6792ff93a015a782",
+         intel: "f2e25e3abf08f0d32bda460d1014e57d00f509a7f19489ebe7dd5fb28bf05633"
 
   url "https://github.com/Wangnov/Codex-App-Manager/releases/download/v#{version}/CodexAppManager_#{arch}.dmg"
   name "Codex App Manager"
