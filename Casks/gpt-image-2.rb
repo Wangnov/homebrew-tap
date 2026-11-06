@@ -11,9 +11,20 @@ cask "gpt-image-2" do
   homepage "https://github.com/Wangnov/gpt-image-2-skill"
 
   auto_updates true
-  depends_on macos: ">= 13.3"
+  depends_on macos: :ventura
 
   app "GPT Image 2.app"
+
+  preflight_steps do
+    run "/bin/sh", args: ["-c", <<~SHELL]
+      case "$(/usr/bin/sw_vers -productVersion)" in
+        13.[012]|13.[012].*)
+          echo "GPT Image 2 requires macOS 13.3 or later." >&2
+          exit 1
+          ;;
+      esac
+    SHELL
+  end
 
   zap trash: [
     "~/Library/Application Support/com.wangnov.gpt-image-2",
