@@ -1,9 +1,9 @@
 cask "gpt-image-2" do
   arch arm: "aarch64", intel: "x64"
 
-  version "0.7.6"
-  sha256 arm:   "68065c7ff47e644dd81f895877486f1ab4516f4647ce39cd5b69f9794ea1dacf",
-         intel: "cadf8f80ea88874a1d577635f1dc0cb9b9eeae2bc57fe4720501e05aba1ca16d"
+  version "0.8.0"
+  sha256 arm:   "e364de6cc01943f64ed0639cbcbd486c501118ce9612d67f650801008706d58e",
+         intel: "5d3b6b1ad26584d64c695e3f68400c3bfd3198903d64a4de3350d1d2d5427f50"
 
   url "https://github.com/Wangnov/gpt-image-2-skill/releases/download/v#{version}/GPT.Image.2_#{version}_#{arch}.dmg"
   name "GPT Image 2"
@@ -11,7 +11,7 @@ cask "gpt-image-2" do
   homepage "https://github.com/Wangnov/gpt-image-2-skill"
 
   auto_updates true
-  depends_on macos: :big_sur
+  depends_on macos: ">= 13.3"
 
   app "GPT Image 2.app"
 
