@@ -1,14 +1,22 @@
 name: Bump codex-app-manager cask
 
-# Keeps Casks/codex-app-manager.rb in sync with the latest stable release of
-# Wangnov/Codex-App-Manager. Reads the public release + assets with the default
-# GITHUB_TOKEN (no extra secret needed) and commits the new version + sha256s
-# straight to main. Runs on a schedule and on demand.
+# Keeps Casks/codex-app-manager.rb in sync with the latest immutable stable
+# release of Wangnov/Codex-App-Manager. Triggered immediately by
+# Codex-App-Manager's release pipeline (workflow_dispatch / repository_dispatch),
+# with a 6-hour schedule fallback that requires zero cross-repo secrets.
 
 on:
   schedule:
-    - cron: "30 */6 * * *"   # every 6 hours
+    - cron: "30 */6 * * *"
+  repository_dispatch:
+    types: [codex-app-manager-release]
   workflow_dispatch:
+    inputs:
+      release-tag:
+        description: "Optional upstream release tag to sync (e.g. v0.5.18); defaults to latest stable"
+        required: false
+        default: ""
+        type: string
 
 permissions:
   contents: write
@@ -23,34 +31,83 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Bump cask if a newer release exists
+      - name: Bump cask if a newer immutable stable release exists
         env:
           GH_TOKEN: ${{ github.token }}
           UPSTREAM: Wangnov/Codex-App-Manager
+          REQUESTED_TAG: ${{ inputs.release-tag || github.event.client_payload.release_tag || '' }}
         run: |
           set -euo pipefail
           cask="Casks/codex-app-manager.rb"
 
-          latest="$(gh release view --repo "$UPSTREAM" --json tagName --jq .tagName)"
-          ver="${latest#v}"
+          latest_json="$(gh release view --repo "$UPSTREAM" --json tagName,isDraft,isPrerelease,isImmutable)"
+          latest_tag="$(jq -r '.tagName' <<< "$latest_json")"
+
+          target_tag="$latest_tag"
+          if [ -n "$REQUESTED_TAG" ]; then
+            if [[ ! "$REQUESTED_TAG" =~ ^v(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)$ ]]; then
+              echo "::error::requested release-tag must be a stable vX.Y.Z tag, got: $REQUESTED_TAG"
+              exit 1
+            fi
+            req_ver="${REQUESTED_TAG#v}"
+            lat_ver="${latest_tag#v}"
+            # Never lag behind latest stable if a newer release already shipped.
+            if printf '%s\n%s\n' "$lat_ver" "$req_ver" | sort -V -C; then
+              target_tag="$REQUESTED_TAG"
+            else
+              echo "Requested $REQUESTED_TAG is older than latest stable $latest_tag; syncing $latest_tag instead"
+              target_tag="$latest_tag"
+            fi
+          fi
+
+          rel_meta="$(gh release view "$target_tag" --repo "$UPSTREAM" --json tagName,isDraft,isPrerelease,isImmutable)"
+          if [ "$(jq -r '.isDraft' <<< "$rel_meta")" != "false" ] || [ "$(jq -r '.isPrerelease' <<< "$rel_meta")" != "false" ]; then
+            echo "::error::target release $target_tag must be a published stable release"
+            exit 1
+          fi
+          if [ "$(jq -r '.isImmutable' <<< "$rel_meta")" != "true" ]; then
+            echo "::error::target release $target_tag is not an immutable GitHub Release"
+            exit 1
+          fi
+
+          ver="${target_tag#v}"
           cur="$(sed -nE 's/^ *version "([^"]+)".*/\1/p' "$cask" | head -1)"
-          echo "current=$cur latest=$ver"
+          echo "current=$cur target=$ver"
           if [ "$ver" = "$cur" ]; then
-            echo "cask already at $ver — nothing to do"
+            echo "cask already at $ver; nothing to do"
+            exit 0
+          fi
+          if printf '%s\n%s\n' "$ver" "$cur" | sort -V -C; then
+            echo "target $ver is not newer than current cask version $cur; refusing downgrade"
             exit 0
           fi
 
+          # Cryptographically verify GitHub's immutable release attestation before downloading.
+          gh release verify "$target_tag" --repo "$UPSTREAM" >/dev/null
+
           tmp="$(mktemp -d)"
-          gh release download "$latest" --repo "$UPSTREAM" \
-            -p CodexAppManager_aarch64.dmg -p CodexAppManager_x86_64.dmg -D "$tmp"
+          gh release download "$target_tag" --repo "$UPSTREAM" \
+            -p CodexAppManager_aarch64.dmg \
+            -p CodexAppManager_x86_64.dmg \
+            -p SHA256SUMS \
+            -D "$tmp"
+
+          for dmg in CodexAppManager_aarch64.dmg CodexAppManager_x86_64.dmg; do
+            gh release verify-asset "$target_tag" "$tmp/$dmg" --repo "$UPSTREAM" >/dev/null
+          done
+
           arm="$(sha256sum "$tmp/CodexAppManager_aarch64.dmg" | awk '{print $1}')"
           intel="$(sha256sum "$tmp/CodexAppManager_x86_64.dmg" | awk '{print $1}')"
+
+          expected_arm="$(awk '$2 == "CodexAppManager_aarch64.dmg" { print $1 }' "$tmp/SHA256SUMS")"
+          expected_intel="$(awk '$2 == "CodexAppManager_x86_64.dmg" { print $1 }' "$tmp/SHA256SUMS")"
+          [ "$arm" = "$expected_arm" ] || { echo "::error::aarch64 DMG sha256 mismatch against SHA256SUMS"; exit 1; }
+          [ "$intel" = "$expected_intel" ] || { echo "::error::x86_64 DMG sha256 mismatch against SHA256SUMS"; exit 1; }
 
           sed -i -E "s/^( *version )\"[^\"]+\"/\1\"$ver\"/" "$cask"
           sed -i -E "s/^( *sha256 arm: +)\"[0-9a-f]{64}\"/\1\"$arm\"/" "$cask"
           sed -i -E "s/^( *intel: +)\"[0-9a-f]{64}\"/\1\"$intel\"/" "$cask"
 
-          # Fail loudly if the file format drifted and the rewrite missed.
           grep -q "version \"$ver\"" "$cask" || { echo "::error::version not updated"; exit 1; }
           grep -q "\"$arm\"" "$cask"          || { echo "::error::arm sha256 not updated"; exit 1; }
           grep -q "\"$intel\"" "$cask"        || { echo "::error::intel sha256 not updated"; exit 1; }
@@ -60,5 +117,6 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add "$cask"
           git commit -m "codex-app-manager: ${cur} -> ${ver}"
-          git push
-          echo "✓ bumped codex-app-manager ${cur} -> ${ver}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "bumped codex-app-manager ${cur} -> ${ver}"
